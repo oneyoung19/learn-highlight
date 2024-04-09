@@ -4,46 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>highlight</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github-dark.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/atom-one-dark.min.css">
 </head>
 <body>
   <pre>
-    <code id="code-area"></code>
+    <code class="hljs" id="code-area"></code>
   </pre>
   <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
   <script>
     // See more at: https://juejin.cn/post/7245584147456507965
     const codeEle = document.getElementById('code-area')
-    // 比如说现在 code 就是 Ajax 返回的数据，lang 就是代码语言，content 就是代码内容
-    // const code = {
-    //   lang: 'css',
-    //   content: `
-    //   * {
-    //     margin: 0;
-    //     padding: 0;
-    //   }`
-    // }
+    // 唯一要注意的是下面的代码格式（由于white-spaces设置为了pre）
     const code = {
       // javascript js 都管用
       lang: 'js',
-      content: `
-        const languages = ['简体中文', '繁体中文', 'English']
-        switch(Your Language)
-        xhr.post('/login', 'https://cbibank.com')
-          .then(loading)
-          .then(response => {
-            console.log('Welcome')
-          })
+      content: `const languages = ['简体中文', '繁体中文', 'English']
+switch(Your Language)
+xhr.post('/login', 'https://example.com')
+  .then(loading)
+  .then(response => {
+    console.log('Welcome')
+  })
       `
     }
     // 我们接下来可以使用 hljs.highlight，将代码内容与代码语言传入进去
     const result = hljs.highlight(code.content, {
       language: code.lang
     })
-    // 它会返回一个结果，我们打印到控制台看看
     console.log('result >>> ', result)
     codeEle.innerHTML = result.value
-    // 通过 className 为 code 手动添加类样式，并添加类的语言
     // codeEle.className = `hljs language-${code.lang}`
   </script>
 </body>
